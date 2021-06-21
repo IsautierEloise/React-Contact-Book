@@ -1,0 +1,18 @@
+{
+  "people": [
+    {
+      "firstName": "Eloise",
+      "lastName": "Test",
+      "email": "eloise@mydodow.com",
+      "birthday": "2021-06-23",
+      "id": 1
+    },
+    {
+      "firstName": "Ek",
+      "lastName": "ijfef",
+      "email": "eo@jpoifj.fr",
+      "birthday": "2021-06-02",
+      "id": 2
+    }
+  ]
+}

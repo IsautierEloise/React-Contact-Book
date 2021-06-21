@@ -1,38 +1,328 @@
-.App {
-  text-align: center;
+/**
+** General 
+**
+*/
+
+font-face {
+    font-family: 'estherregular';
+    src: url("./assets/fonts/Esther.otf") format("otf"),
+    url("./assets/fonts/AribauGroteskRegular.otf") format("otf");
+    font-weight: normal;
+    font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {    
+    padding: 3rem 4rem;
+    margin: 0;
+    min-height: 100vh;
+    background-image: url(./assets/images/background.jpg);
+    background-repeat: no-repeat;    
+    background-size: cover;    
+    font-family: sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1, h3 {
+    font-family: "Esther";
+    -webkit-font-smoothing: antialiased;
+}
+h1 {
+    color: white;
+    font-size: 2.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h3 {
+    color: #555792;
+    font-size: 1.5rem;
 }
 
-.App-link {
-  color: #61dafb;
+body {
+    margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/**
+** Slider 
+**
+*/
+.Slider{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40%
+}
+
+.Slider-add{
+    border:none;
+    border-radius: 50%;
+    width: 3.25rem;
+    height: 3.25rem;
+    background-color: #FFFFFFCC;
+    position: absolute;
+    right: 4rem;
+    top: 3rem;
+    transition: transform 500ms, opacity 500ms;
+}
+
+.Slider-add-open{
+    transform: translateX(-36vw) rotate(45deg);
+}
+
+.Slider-add-open svg g path{
+    stroke: #E87C7C;
+}
+.panel {
+    display: flex;
+    margin-bottom:1rem;
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.sliding-panel-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+  
+.sliding-panel-container.active {
+    position: fixed;
+    z-index: 15000;
+    background-color: rgba(0, 0, 0, 0.3);
+    will-change: transform;
+}
+  
+.sliding-panel-container.active.click-through {
+    pointer-events: none;
+    background-color: transparent;
+}
+  
+.sliding-panel-container.click-through > div {
+    pointer-events: none;
+}
+  
+.panel-content {
+    height: 100%;
+    width: 100%;
+    pointer-events: all;
+}
+  
+.panel-container-left-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.panel-container-left-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 500ms, opacity 500ms;
+}
+.panel-container-left-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+.panel-container-left-exit-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform 500ms, opacity 500ms;
+}
+  
+.panel-container-right-enter {
+    opacity: 0;
+    transform: translateX(100%);
+}
+.panel-container-right-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 500ms, opacity 500ms;
+}
+.panel-container-right-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+.panel-container-right-exit-active {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 500ms, opacity 500ms;
+}
+  
+.panel-container-top-enter {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.panel-container-top-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 500ms, opacity 500ms;
+}
+.panel-container-top-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+.panel-container-top-exit-active {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform 500ms, opacity 500ms;
+}
+  
+.panel-container-bottom-enter {
+    opacity: 0;
+    transform: translateY(100%);
+}
+.panel-container-bottom-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 500ms, opacity 500ms;
+}
+.panel-container-bottom-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+.panel-container-bottom-exit-active {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 500ms, opacity 500ms;
+}
+
+/**
+** New Contact Form 
+**
+*/
+.form{
+    padding: 3rem;  
+  
+}
+
+.form form {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: .5rem; 
+    grid-template-areas: 
+      ". ."
+      ". ."; 
+}
+
+input {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.06);
+    border-radius: .25rem;
+    border:none;
+    height: 1.75rem;
+    padding: 0 .5rem;
+    color: rgba(85, 87, 146);
+}
+.form form input value {
+    color: rgba(85, 87, 146);
+}
+
+.form .save{
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(85, 87, 146, 0.5);
+    backdrop-filter: blur(10px);
+    justify-self: right;
+}
+
+.form form input::placeholder {
+    font-size: .75rem;
+    color: rgba(85, 87, 146, 0.6);
+}
+
+/* .birthday{
+    font-size: .75rem;
+    color: rgba(85, 87, 146, 0.6);
+} */
+/**
+** List 
+**
+*/
+
+.List-search{
+    position: relative;    
+    width: 14rem;
+    height: 2rem;
+}
+.List-search svg{
+    z-index: 100;
+    position: absolute;
+    right: 0;
+    right: .75rem;
+    top: 25%;
+    width: 16px;
+}
+
+.List-search-input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    border-radius: 2.25rem;
+    border:none;
+    color:white;
+    padding-left: .75rem;
+}
+
+
+.List-search-input::placeholder{
+    color: #D5D9E5;
+}
+
+.List ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+
+/**
+** Card 
+**
+*/
+.ContactCard {
+    display: flex;    
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: .5rem 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ContactCard h3 span{
+    color:#555792;
+    font-size: .875rem;
+}
+
+.ContactCard span{
+    font-size: .875rem;
+    color: #282828;
+}
+.ContactCard-buttons{
+    display: inherit
+}
+
+.ContactCard-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border:none; 
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+} 
+
+.ContactCard-button:first-child{   
+    margin-right: .5rem;
+}
+
+.ContactCard-button-tick{
+    background: black
 }
